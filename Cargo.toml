@@ -1,0 +1,11 @@
+[package]
+name = "lsp_client"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# ra commit a670ff888437f4b6a3d24cc2996e9f969a87cbae
+rust-analyzer = { path = "/home/w/repos/clone_repos/rust-analyzer/crates/rust-analyzer" }
+lsp-types = "0.93.1"
+lsp-server = "0.6"
+serde_json = "1.0"
