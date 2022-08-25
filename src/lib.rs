@@ -176,6 +176,8 @@ fn main() {
 #[test]
 fn find_dead_code_in_cargo_workspace() {
     let mut lsp_server_process = std::process::Command::new("rust-analyzer")
+        // .arg("--verbose")
+        .env("RA_LOG", "rust_analyzer=info")
         .stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
         .stderr(unsafe {
@@ -183,7 +185,6 @@ fn find_dead_code_in_cargo_workspace() {
             let log_file = std::fs::File::create("target/ra.log").unwrap();
             std::process::Stdio::from_raw_fd(log_file.into_raw_fd())
         })
-        .env("RA_LOG", "rust_analyzer=info")
         .spawn()
         .unwrap();
     let req_to_ra = lsp_server_process.stdin.take().unwrap();
